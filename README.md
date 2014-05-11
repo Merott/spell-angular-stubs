@@ -1,4 +1,4 @@
-# `warlock-spell-angular-stubs`
+# warlock-spell-angular-stubs
 
 This is a [Warlock](https://github.com/ngbp/warlock) spell to generate stub AngularJS provider modules, by processing `*.stub.js` and `*.stub.json` files containing stub definitions. It is pretty much my first stab at it, so it has some rough edges, and perhaps not quite *ready* code. I have therefore decided to mark it as a private repository in `package.json` and not publish to NPM.
 
@@ -48,19 +48,19 @@ And here is a full example, showing what's possible:
          "$functions": {
             "all": [
                {
-                  "$arguments": "*",	// matches any set of arguments
+                  "$arguments": "*",   // matches any set of arguments
 
                   "$config": {
-                     "$delay": 3000		// Setting the delay causes the function to return a promise
+                     "$delay": 3000    // Setting the delay causes the function to return a promise
                   },
 
                   "$returnValue": ["x", "y", "z"]
                },
                {
-                  "$arguments": ["a"],	// match a particular set of arguments
+                  "$arguments": ["a"], // match a particular set of arguments
 
                   "$config": {
-                     "$delay": 1000		// resolve promise after 1 second
+                     "$delay": 1000    // resolve promise after 1 second
                   },
 
                   "$returnValue": function() {
@@ -84,7 +84,8 @@ And here is a full example, showing what's possible:
                {
                   "$arguments": "*",
 
-                  "$config": {			// I have no delay. I return the return immediately without a promise
+                  "$config": {
+                     // I have no delay. I return the return value as a plain object/value immediately
                   },
 
                   "$returnValue": ["y", "z"]
@@ -97,3 +98,9 @@ And here is a full example, showing what's possible:
    return stub;
 })();
 ```
+
+# To Do:
+
+- Make it possible to let the stub reject a promise instead of resolving
+- Make it possible for stubs to take in callback functions and execute the callback, optionally with a delay
+- More...
