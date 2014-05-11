@@ -1,12 +1,19 @@
-template = require 'gulp-template'
+wrap = require 'gulp-wrap'
 
-module.exports = ( warlock ) ->
-  warlock.flow 'stubs-to-build',
+module.exports = (warlock) ->
+  defaultTplPath = warlock.file.joinPath __dirname, "../templates/stub.js.tpl"
+
+  tplWrap = (options) ->
+    options.src = options.tpl
+    options.src = defaultTplPath if options.src is "default"
+    delete options.tpl
+    wrap(options)
+
+  warlock.flow 'angular-stubs-to-generate',
     source: [ '<%= globs.source.stubs %>' ]
     source_options:
       base: "<%= paths.source_app %>"
     tasks: [ 'webapp-build' ]
-    merge: 'flow::styles-to-build::90'
+    merge: 'flow::scripts-to-build::20'
 
-  .add( 50, 'stubs-generate', template )
-
+  .add(80, 'angular-stubs-generate', tplWrap)

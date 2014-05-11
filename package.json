@@ -3,6 +3,7 @@
   "version": "1.0.0-alpha.1",
   "description": "An addon to add Angular module stubbing support to the Warlock Angular spell",
   "homepage": "https://github.com/merott/spell-angular-stubs",
+  "private": "true",
   "author": {
     "name": "Merott Movahedi",
     "url": "http://github.com/merott"
@@ -28,20 +29,27 @@
   },
   "keywords": [
     "warlockplugin",
-    "warlockspell",
-    "angularstubs"
+    "warlockspell"
   ],
   "warlock": {
     "globs": {
       "source": {
+        "js": [
+          "!<%= paths.source_app %>/**/*.stub.js"
+        ],
         "stubs": [
           "<%= paths.source_app %>/**/*.stub.js",
           "<%= paths.source_app %>/**/*.stub.json"
         ]
       }
+    },
+    "tasks": {
+      "angular-stubs-generate": {
+        "tpl": "default"
+      }
     }
   },
   "dependencies": {
-    "gulp-template": "~0.1.1"
+    "gulp-wrap": "~0.3.0"
   }
 }
