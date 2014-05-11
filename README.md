@@ -73,6 +73,7 @@ And here is a full example, showing what's possible:
                      "$delay": 1000    // resolve promise after 1 second
                   },
 
+                  // return value can be a function, the return value of which will be returned to the caller
                   "$returnValue": function() {
                      printMyName();
                      return ["I logged and returned."];
